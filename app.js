@@ -6,6 +6,11 @@ var path = require('path')
 
 //定位静态目录的位置，根据请求找出对应的文件
 function staticRoot(staticPath, req, res) {
+    if (path.normalize(decodeURI(pathObj.pathname)) !== decodeURI(pathArray.pathname)) {
+        res.statusCode = 403;
+        res.end();
+        return;
+    }
   var pathObj = url.parse(req.url, true)
 
   if (pathObj.pathname === '/') {
